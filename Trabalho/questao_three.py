@@ -41,24 +41,52 @@ def escolha_servico():
 
 
 def num_pagina():
-    paginas = input('Entre com o número de paginas: ')
-    if paginas < 20:
-        return paginas
-    elif paginas >= 20 and paginas < 200:
-        desconto = paginas * 0.15
-        return paginas, desconto
-    elif paginas >= 200 and paginas < 2000:
-        desconto = paginas * 0.20
-        return paginas, desconto
-    elif paginas >= 2000 and paginas < 20000:
-        desconto = paginas * 0.25
-        return paginas, desconto
-    elif paginas >= 20000:
-        return print('Não é aceito pedidos nessa quantidade de páginas.')
-    
-teste = escolha_servico
-teste2 = num_pagina
+    while True:
+        try:
+            paginas = int(input('Entre com o número de paginas: '))
+            if paginas < 20:
+                return paginas
+                break
+            elif paginas >= 20 and paginas < 200:
+                desconto = paginas - (paginas * 0.15)
+                return desconto
+                break
+            elif paginas >= 200 and paginas < 2000:
+                desconto = paginas - (paginas * 0.20)
+                return desconto
+                break
+            elif paginas >= 2000 and paginas < 20000:
+                desconto = paginas - (paginas * 0.25)
+                return desconto
+                break
+            elif paginas >= 20000:
+                print('Não é aceito pedidos nessa quantidade de páginas.')
 
-print(f'{teste} e {teste2}')
+        except ValueError:
+            print('Erro: Entrada inválida! Por favor, digite um número.')
 
- 
+
+def servico_extra():
+    while True:
+        try:
+            print('Deseja adicionar algum serviço?')
+            print(f'1 - Encadernação Simples - R$ {encs:.2f}')
+            print(f'2 - Encadernação Capa Dura - R$ {encd:.2f}')
+            print(f'0 - Não desejo mais nada')
+            deseja = int(input('>>>'))
+            
+            if deseja == 1:
+                return encs
+            elif deseja == 2:
+                return encd
+            else:
+                return 0
+        except ValueError:
+            print('Erro: Entrada inválida! Por favor, digite um número.')
+            print('')
+
+valor = escolha_servico()
+valorr = num_pagina() * valor
+valorrr = servico_extra() + valorr
+
+print(f'Total: R$ {valorrr} (serviço: {valor} * páginas: {valorr} + extra: {valorrr})')

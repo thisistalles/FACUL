@@ -21,18 +21,16 @@ print(53 * '-')
 valor = 0
 while True:
 
-    sabor = input('Entre com o sabor desejado (CP/AC): ')
-    saborM = sabor.upper()
-
-    if not saborM == 'AC' and not saborM == 'CP':
+    saborM = input('Entre com o sabor desejado (CP/AC): ').upper()
+ 
+    if saborM not in ['AC', 'CP']:
         print('Sabor inválido. Tente novamente')
         print('')
         continue
 
-    tamanho = input('Entre com o tamanho desejado (P/M/G): ')
-    tamanhoM = tamanho.upper()
-
-    if not tamanhoM == 'P' and not tamanhoM == 'M' and not tamanhoM == 'G':
+    tamanhoM = input('Entre com o tamanho desejado (P/M/G): ').upper()
+ 
+    if tamanhoM not in ['P', 'M', 'G']:
         print('Tamanho inválido. Tente novamente')
         print('')
         continue
@@ -57,11 +55,10 @@ while True:
         print(f'Você pediu um Açai no tamanho {tamanhoM}: R${ac_g:.2f}')
         valor += ac_g
 
-    coisa = input('Deseja mais alguma coisa? (S/N): ')
-    coisam = coisa.upper()
+    coisaM = input('Deseja mais alguma coisa? (S/N): ').upper()
     print('')
 
-    if coisam != 'S':
+    if coisaM != 'S':
         print('')
         print(f'O valor total a ser pago: R${valor:.2f}')
         break

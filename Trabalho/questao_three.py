@@ -9,8 +9,6 @@ encd = 40.00
 
 print('Bem-Vindo a Loja de Gelados do Talles Robert')
 
-valor = 0
-
 
 def escolha_servico():
 
@@ -20,10 +18,9 @@ def escolha_servico():
         print('ICO - Impressão Colorida')
         print('IPB - Impressão Preto e Branco')
         print('FOT - Fotocópia')
-        servico = input('>>>')
-        servicoM = servico.upper()
+        servicoM = input('>>>').upper()
 
-        if not servicoM == 'DIG' and not servicoM == "ICO" and not servicoM == "IPB" and not servicoM == 'FOT':
+        if servicoM not in ['DIG', "ICO", "IPB", 'FOT']:
             print('Escolha inválida, entre com o tipo do serviço novamente')
             print('')
 
@@ -60,7 +57,9 @@ def num_pagina():
                 return desconto
                 break
             elif paginas >= 20000:
-                print('Não é aceito pedidos nessa quantidade de páginas.')
+                print('Não aceitamos tantas paginas de uma vez.')
+                print('Por favor, entre com o número de paginas novamente.')
+                print('')
 
         except ValueError:
             print('Erro: Entrada inválida! Por favor, digite um número.')
@@ -74,7 +73,7 @@ def servico_extra():
             print(f'2 - Encadernação Capa Dura - R$ {encd:.2f}')
             print(f'0 - Não desejo mais nada')
             deseja = int(input('>>>'))
-            
+
             if deseja == 1:
                 return encs
             elif deseja == 2:
@@ -85,8 +84,12 @@ def servico_extra():
             print('Erro: Entrada inválida! Por favor, digite um número.')
             print('')
 
-valor = escolha_servico()
-valorr = num_pagina() * valor
-valorrr = servico_extra() + valorr
 
-print(f'Total: R$ {valorrr} (serviço: {valor} * páginas: {valorr} + extra: {valorrr})')
+servico = escolha_servico()
+paginas = num_pagina()
+extra = servico_extra()
+
+total = (servico * paginas) + extra
+
+print(
+    f'Total: R$ {total:.2f} (serviço: {servico:.2f} * páginas: {paginas:.0f} + extra: {extra:.2f})')
